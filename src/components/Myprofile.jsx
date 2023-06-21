@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BsStackOverflow } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { FaUserNinja } from "react-icons/fa";
+
+import { AiFillCaretDown } from "react-icons/ai";
 const Myprofile = () => {
   const [currentuser, setCurrentuser] = useState([]);
   const [myquestions, setMyquestions] = useState([]);
+
   useEffect(() => {
     axios
       .get(
@@ -55,10 +57,13 @@ const Myprofile = () => {
         </div>
 
         <div className="userprofile flex items-center justify-center border p-1 ml-2 bg-gray-200 rounded">
-          <FaUserNinja className="text-xl ml-3 text-orange-500" />
-          <div className="fullName ml-1 text-center w-36">
-            <Link to={"/myprofile"}>My Profile</Link>
-          </div>
+          <div className="fullName ml-1 text-sm">{currentuser.fullname}</div>
+          <AiFillCaretDown className="text-xl ml-2 text-ogray-500" />
+        </div>
+        <div className="logout bg-orange-600 rounded p-1 px-3 text-white ml-2">
+          <Link to="/login" onClick={() => localStorage.removeItem("token")}>
+            Logout
+          </Link>
         </div>
       </div>
       <div className="myprofile-content-section  border-t border-gray-300">

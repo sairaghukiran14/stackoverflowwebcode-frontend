@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BsStackOverflow } from "react-icons/bs";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   AiFillCaretDown,
   AiFillDownCircle,
   AiFillUpCircle,
 } from "react-icons/ai";
 const IndividualQuestion = () => {
+  const routeParams = useParams();
+  let viewcount = false;
+  window.addEventListener("load", (event) => {
+    viewcount = true;
+  });
+  const data = {
+    questionid: routeParams._id,
+    viewcount,
+  };
+  useEffect(() => {
+    axios
+      .post(
+        "https://stackoverflowwebcode-backendserver.onrender.com/updatequestions",
+        data
+      )
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <div className="question-section-page">
       <div className="navbar border-t-2 border-orange-500 p-2 flex  items-center pl-2 ">
@@ -36,7 +56,7 @@ const IndividualQuestion = () => {
       </div>
       <div className="question-content border-t border-gray-300 flex flex-col">
         <div className="question-title text-2xl text-center border-b p-2">
-          Is there a better to handle set-like operations with Polars?
+          {routeParams.title}
         </div>
         <div className="question-body flex w-3/4 justify-center items-center">
           <div className="votes-section flex flex-col w-48 items-center">

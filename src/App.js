@@ -18,7 +18,10 @@ const App = () => {
           <Route path="/registration" Component={Registration} />
           <Route path="/feedpage" Component={Feedpage} />
           <Route path="/questions" Component={Feedpage} />
-          <Route path="/individualquestion" Component={IndividualQuestion} />
+          <Route
+            path="/individualquestion/:title/:user_id/:id"
+            Component={IndividualQuestion}
+          />
           <Route path="/companies" Component={Companies} />
           <Route path="/myprofile" Component={Myprofile} />
         </Routes>
