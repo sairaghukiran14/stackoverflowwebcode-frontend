@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import background from "./img/sofbackground.jpeg";
 import Fun from "./img/fun.gif";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const [data, setData] = useState({
@@ -11,6 +12,7 @@ const Registration = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
   const changeHandler = (e) => {
     setData((prevData) => ({
       ...prevData,
@@ -31,8 +33,13 @@ const Registration = () => {
       )
       .then((res) => {
         alert(res.data);
-      })
-      .then((err) => console.log(err));
+        // setData({
+        //   fullname: "",
+        //   email: "",
+        //   password: "",
+        // });
+        navigate("/login");
+      });
   };
   return (
     <div className="registrationsection">
