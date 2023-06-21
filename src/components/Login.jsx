@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsStackOverflow } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import background from "./img/sofbackground.jpeg";
 import loginfun from "./img/loginfun.gif";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+  const [auth, setAuth] = useState(false);
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = data;
+  const changeHandler = (e) => {
+    setData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://stackoverflowwebcode-backendserver.onrender.com/login",
+        data
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        setAuth(true);
+      });
+  };
+  if (auth) {
+    return <Navigate to="/feedpage" />;
+  }
+
   return (
     <div className="Loginsection">
       <div className="navbar border-t-2 border-orange-500 p-2 flex justify-between items-center pl-2 ">
@@ -33,14 +63,23 @@ const Login = () => {
             <input
               type="email"
               placeholder="Enter Email Address"
+              name="email"
+              value={email}
+              onChange={changeHandler}
               className="border rounded p-1 mt-2"
             />
             <input
               type="password"
               placeholder="Enter Password"
+              name="password"
+              value={password}
+              onChange={changeHandler}
               className="border rounded p-1 mt-2"
             />
-            <button className="bg-orange-500 text-white rounded p-1 mt-2">
+            <button
+              className="bg-orange-500 text-white rounded p-1 mt-2"
+              onClick={submitHandler}
+            >
               Login
             </button>
           </form>
