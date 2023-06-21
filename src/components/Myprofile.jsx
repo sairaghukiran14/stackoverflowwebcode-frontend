@@ -96,11 +96,11 @@ const Myprofile = () => {
                     <div className="description">{myques.body}</div>
                     <div className="tags-user-section flex justify-between pt-2">
                       <div className="tags flex">
-                        {myques.tags.split(",").map((tag) => {
+                        {myques.tags.split(",").map((tag) => (
                           <div className="tag bg-blue-300 text-white px-2 p-1 rounded ml-1">
                             {tag}
-                          </div>;
-                        })}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>

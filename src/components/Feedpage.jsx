@@ -7,7 +7,7 @@ import axios from "axios";
 const Feedpage = () => {
   const [ques, setQues] = useState([]);
   // const [currentuser, setCurrentuser] = useState([]);
-  const [displayuser, setDisplayUsers] = useState([]);
+  // const [displayuser, setDisplayUsers] = useState([]);
 
   useEffect(() => {
     axios
@@ -89,11 +89,11 @@ const Feedpage = () => {
                   <div className="description">{q.body}</div>
                   <div className="tags-user-section flex justify-between pt-2">
                     <div className="tags flex">
-                      {q.tags.split(",").map((tag) => {
+                      {q.tags.split(",").map((tag) => (
                         <div className="tag bg-blue-300 text-white px-2 p-1 rounded ml-1">
                           {tag}
-                        </div>;
-                      })}
+                        </div>
+                      ))}
                     </div>
                     <div className="post-user flex items-center justify-center">
                       <FaUserNinja className=" mr-2 text-orange-500" />
