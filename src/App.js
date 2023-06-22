@@ -7,6 +7,7 @@ import Registration from "./components/Registration";
 import Feedpage from "./components/Feedpage";
 import Companies from "./components/Companies";
 import Myprofile from "./components/Myprofile";
+import AddQuestion from "./components/AddQuestion";
 import IndividualQuestion from "./components/IndividualQuestion";
 const App = () => {
   return (
@@ -19,10 +20,11 @@ const App = () => {
           <Route path="/feedpage" Component={Feedpage} />
           <Route path="/questions" Component={Feedpage} />
           <Route
-            path="/individualquestion/:title/:user_id/:id"
+            path="/individualquestion/:id"
             Component={IndividualQuestion}
           />
           <Route path="/companies" Component={Companies} />
+          <Route path="/addquestion" Component={AddQuestion} />
           <Route path="/myprofile" Component={Myprofile} />
         </Routes>
       </BrowserRouter>

@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { FaUserNinja } from "react-icons/fa";
 import "./css/feedpage.css";
 import axios from "axios";
-import { AiFillCaretDown } from "react-icons/ai";
+import {
+  AiOutlineCaretDown,
+  AiOutlineDownCircle,
+  AiOutlineUpCircle,
+} from "react-icons/ai";
 const Feedpage = () => {
   const [ques, setQues] = useState([]);
   // const [currentuser, setCurrentuser] = useState([]);
@@ -68,7 +72,7 @@ const Feedpage = () => {
 
         <div className="userprofile flex items-center justify-center border p-1 ml-2 bg-gray-200 rounded">
           <div className="fullName ml-1 text-sm">ASRaghuKiran</div>
-          <AiFillCaretDown className="text-xl ml-2 text-ogray-500" />
+          <AiOutlineCaretDown className="text-xl ml-2 text-ogray-500" />
         </div>
 
         <div className="logout bg-orange-600 rounded p-1 px-3 text-white ml-2">
@@ -97,10 +101,7 @@ const Feedpage = () => {
                 </div>
                 <div className="rightpart flex flex-col pl-3 w-5/6 p-2">
                   <div className="title text-blue-400 text-xl">
-                    <Link
-                      to={`/individualquestion/${q.title}/${q.user_id}/${q._id}`}
-                      className=""
-                    >
+                    <Link to={`/individualquestion/${q._id}`} className="">
                       {q.title}
                     </Link>
                   </div>
